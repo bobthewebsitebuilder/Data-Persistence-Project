@@ -12,6 +12,8 @@ public class MainManager : MonoBehaviour
 
     public Text ScoreText;
     public GameObject GameOverText;
+
+    public static MainManager Instance;
     
     private bool m_Started = false;
     private int m_Points;
@@ -36,6 +38,20 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+    }
+
+    private void Awake()
+    {
+        // start of new code
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        // end of new code
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
