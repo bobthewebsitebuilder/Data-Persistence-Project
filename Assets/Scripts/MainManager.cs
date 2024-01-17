@@ -94,6 +94,7 @@ public class MainManager : MonoBehaviour
 
         if (GameInfo.Instance.UpdateBestScore(points))
             SetTopScoreText();
+            GameInfo.Instance.Save();
 
         GameOverText.SetActive(true);
     }
